@@ -5,7 +5,7 @@ st.title('Zena\'s Amazing Athleisure Catalog')
 
 cnx = st.connection("snowflake")
 session = cnx.session()
-my_dataframe = session.table("zenas_athleisure_db.products").select(col('COLOR_OR_STYLE'))     
+my_dataframe = session.table("products").select(col('COLOR_OR_STYLE'))     
 
 option = st.selectbox(
    "Pick a sweatsuit color or style",
