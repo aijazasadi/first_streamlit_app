@@ -2,12 +2,15 @@ import streamlit as st
 
 st.title('Zena\'s Amazing Athleisure Catalog')
 
+cnx = st.connection("snowflake")
+session = cnx.session()
+my_dataframe = session.table("zenas_athleisure_db.products").select(col('COLOR_OR_STYLE'))     
+
 option = st.selectbox(
    "Pick a sweatsuit color or style",
-   ("Email", "Home phone", "Mobile phone"),
-   index=None,
-   placeholder="Select contact method...",
+   my_dataframe
 )
 
 st.write("You selected:", option)
 
+            
