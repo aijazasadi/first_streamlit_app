@@ -16,7 +16,8 @@ selected_color = st.selectbox(
 
 catalog_dataframe = session.sql("SELECT * from ZENAS_ATHLEISURE_DB.products.catalog_for_website where color_or_Style='"+selected_color+"'").collect()
 selected_item = catalog_dataframe[0]
-st.write(selected_item)
+
+st.image(selected_item["DIRECT_URL"], use_column_width  = "auto", caption="Our warm, comfortable, " + selected_color + " sweatsuit!")
 
 
 
