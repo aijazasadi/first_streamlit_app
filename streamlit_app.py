@@ -9,11 +9,15 @@ session = cnx.session()
 # colors_dataframe = session.table("ZENAS_ATHLEISURE_DB.products.catalog_for_website").select(col('COLOR_OR_STYLE'))   
 colors_dataframe = session.sql("SELECT COLOR_OR_STYLE from ZENAS_ATHLEISURE_DB.products.catalog_for_website").collect()
 
-selected_item = st.selectbox(
+selected_color = st.selectbox(
    "Pick a sweatsuit color or style",
    colors_dataframe
 )
 
-st.write("You selected:", selected_item["DIRECT_URL"])
+catalog_dataframe = session.sql("SELECT * from ZENAS_ATHLEISURE_DB.products.catalog_for_website where color_or_Style='"+selected_color+"'").collect()
+selected_item = catalog_dataframe[0]
+st.write(selected_item)
+
+
 
             
